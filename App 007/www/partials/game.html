@@ -1,0 +1,28 @@
+<!-- Day Page -->
+
+<section class="app-panel" ng-init="setHeader('Application')">
+  <div ng-controller = "game">
+    <h5>Player{{idPlayer + 1}}</h5>
+    <p>{{life}} vie | {{bullet}} balle(s)</p>
+    <div ng-show="myAction == 0">
+      <p ng-click="action(1)">tirer</p>
+      <p ng-click="action(2)">bloquer</p>
+      <p ng-click="action(3)">recharger</p>
+    </div>
+    <div ng-show="myAction != 0">
+      <p>vous jouer :</p>
+      <h5 ng-show="myAction == 1">tirer</h5>
+      <h5 ng-show="myAction == 2">bloquer</h5>
+      <h5 ng-show="myAction == 3">recharger</h5>
+      <p>__________________________________</p>
+    </div>
+    <div ng-show="otherResult != 0">
+      <p>l'autre a joué :</p>
+      <h5 ng-show="otherResult == 1">tirer</h5>
+      <h5 ng-show="otherResult == 2">bloquer</h5>
+      <h5 ng-show="otherResult == 3">recharger</h5>
+    </div>
+    <p ng-click="continuer()" ng-show="continue">continuer</p>
+
+  </div>
+</section>

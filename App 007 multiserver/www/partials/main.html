@@ -1,0 +1,8 @@
+<!-- Day Page -->
+
+<section class="app-panel" ng-init="setHeader('Application')">
+  <div ng-controller = "main">
+    <p ng-click="joinGame()" ng-hide="accessGame"> Rejoindre une partie</p>
+    <p ng-show="waitingGame">attente d'autre joueur...</p>
+  </div>
+</section>

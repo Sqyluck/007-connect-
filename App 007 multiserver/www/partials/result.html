@@ -1,0 +1,10 @@
+<!-- Day Page -->
+
+<section class="app-panel" ng-init="setHeader('Application')">
+  <div ng-controller = "result">
+    <p>fin de la partie</p>
+    <p>{{result===0?"Vous avez perdu":"Vous avez gagné"}}</p>
+    <p ng-click="replay()">Rejouer</p>
+    <p ng-click="quit()">Quitter</p>
+  </div>
+</section>
