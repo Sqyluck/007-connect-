@@ -261,7 +261,7 @@ ul {
   width: 100%;
   background-color: #ff7b53;
   color: #ffffff;
-  font-family: "Roboto-Medium";
+  family: "Roboto-Medium";
   font-size: 0.7rem;
   box-shadow: 0px 3px 5px #888888;
 }
