@@ -14,7 +14,35 @@
 	src: url('assets/fonts/Roboto-Regular.ttf');
 }
 
+.action{
+  display: block;
+}
 
+.info{
+  display: inline-block;
+}
+
+.buttonload {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: none; /* Remove borders */
+    color: #C0C0C0; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px /* Set a font size */
+}
+
+.titre{
+  font-family: fantasy;
+}
+
+app-panel{
+color:black;
+background-color:white;
+background-image:url(image/007.svg);
+background-repeat:no-repeat;
+}
 
 /** Style of the header **/
 header {
@@ -31,9 +59,100 @@ header {
   box-shadow: 0px 3px 5px #888888;
 }
 
+.button {
+    background-color: #555555;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image1{
+  position: absolute;
+  bottom: 0;
+  display: block;
+  text-align: center;
+  width: 250px;
+	height: 250px;
+}
+
+.text{
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #C0C0C0;
+    color: white;
+}
+
+.image{
+  width: 200px;
+	height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.icon{
+  width:15px;
+	height: 15px;
+  vertical-align:middle;
+}
+
+.icon1{
+  width:35px;
+	height: 35px;
+  vertical-align:bottom;
+  float: left;
+}
+
+.blocL{
+  float:left;
+  display: block;
+}
+
+.blocR{
+  float:right;
+  display: block;
+}
+
+.aligne{
+  display: inline-block;
+}
+
+.palign{
+  display: inline-block;
+  background-color: #555555;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-top: auto;
+  padding: 10px 25px;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.palign:hover{
+  background-color: #C0C0C0;
+  color: white;
+}
+
+.align{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 header h1 {
   padding: 13px 16px;
   margin: 0;
+  text-align: center;
 }
 
 .fa-navicon{

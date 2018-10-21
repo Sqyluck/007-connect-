@@ -10,10 +10,12 @@ int NbBullet;
 int result;
 int gameStarted = 0;
 int idUser=-1;
+int idGame = -1;
+int otherAction = -1;
 
   bool joinGame(){
   HTTPClient http;
-  http.begin("http://10.10.10.10:80/joinGame?idUser" + String(idUser));
+  http.begin("http://10.10.10.10:80/joinGame?idUser" + String(idUser) + "&idGame" + String(idGame));
   int httpCode = http.GET(); //Send the request
   if (httpCode == 200) { //Check the returning code
       String payload = http.getString();
@@ -34,7 +36,7 @@ bool started(){
     Serial.print(".");
     //On envoie la requete toutes les secondes*/ 
     HTTPClient http;
-    http.begin("http://10.10.10.10:80/gameStarted");
+    http.begin("http://10.10.10.10:80/gameStarted?idGame" + String(idGame));
     int httpCode = http.GET(); //Send the request
     if (httpCode == 200) { //Check the returning code
       String payload = http.getString();
@@ -54,7 +56,7 @@ bool started(){
     if(choice < 4){
       HTTPClient http;
       Serial.println("Envoi de l'action");
-      http.begin("http://10.10.10.10:80/action?id=" + String(idUser) + "&action=" + String(choice));
+      http.begin("http://10.10.10.10:80/action?id=" + String(idUser) + "&action=" + String(choice) + "&idGame=" + String(idGame));
       int httpCode = http.GET(); //Send the request
       if (httpCode == 200) { //Check the returning code
         String payload = http.getString();
@@ -70,7 +72,7 @@ bool started(){
         while(!reponse){
           Serial.print(".");
             HTTPClient http;
-            http.begin("http://10.10.10.10:80/getResult?userName=" + String(idUser));
+            http.begin("http://10.10.10.10:80/getResult?userName=" + String(idUser) + "&idGame=" + String(idGame));
             int httpCode = http.GET(); //Send the request
             if (httpCode == 200) { //Check the returning code
               String payload = http.getString();
@@ -79,6 +81,7 @@ bool started(){
               NbLife = payload.substring(0,2).toInt();Serial.println(NbLife);
               NbBullet = payload.substring(2,3).toInt();Serial.println(NbBullet);
               result = payload.substring(4,5).toInt();Serial.println(result);
+              otherAction = payload.substring(5,6).toInt();Serial.println(otherAction);
               reponse = true;
               }
             http.end();
@@ -91,7 +94,7 @@ bool started(){
 
 bool quit(){
   HTTPClient http;
-  http.begin("http://10.10.10.10:80/quit?id=" + String(idUser));
+  http.begin("http://10.10.10.10:80/quit?id=" + String(idUser)+"&idGame=" + String(idGame));
   int httpCode = http.GET(); //Send the request
   if (httpCode == 200) { //Check the returning code
     String payload = http.getString();
