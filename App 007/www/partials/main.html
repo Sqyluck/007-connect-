@@ -4,6 +4,6 @@
   <p ng-hide="waitingGame" class="titre"> Tenez-vous prêt</p>
   <div ng-controller = "main">
     <p class = "button" ng-click="joinGame()" ng-hide="accessGame"> Nouvelle partie</p>
-    <p class="buttonload"> Loading <i class="fa fa-spinner fa-spin"></i></p>
+    <p ng-show="waitingGame" class="buttonload"> Loading <i class="fa fa-spinner fa-spin"></i></p>
   </div>
 </section>
