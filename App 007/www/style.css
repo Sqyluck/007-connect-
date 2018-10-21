@@ -15,7 +15,7 @@
 }
 
 .action{
-  display: block;
+
 }
 
 .info{
@@ -60,8 +60,9 @@ header {
 }
 
 .button {
-    background-color: #555555;
+    background-color: #ECF0F1;
     border-radius: 4px;
+    border-width:2px;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -104,38 +105,44 @@ header {
   vertical-align:middle;
 }
 
+.icon2{
+  width:15px;
+	height: 15px;
+  vertical-align:bottom;
+}
+
 .icon1{
   width:35px;
 	height: 35px;
-  vertical-align:bottom;
-  float: left;
+  vertical-align:middle;
 }
 
 .blocL{
-  float:left;
-  display: block;
+  display: inline-block;
 }
 
 .blocR{
+  display: inline-block;
+  margin-right: 0%;
   float:right;
-  display: block;
 }
 
 .aligne{
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
 .palign{
-  display: inline-block;
-  background-color: #555555;
+  background-color: #ECF0F1;
   border-radius: 4px;
-  margin-left: auto;
-  margin-top: auto;
-  padding: 10px 25px;
-  border: none;
-  color: white;
-  text-decoration: none;
+  color: black;
   font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  margin: auto;
 }
 
 .palign:hover{
