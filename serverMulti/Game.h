@@ -2,7 +2,7 @@
 
 class Game {
   private : 
-    Player * player[2];
+    Player * player[2]; //les deux joueurs
   public:
     Game();
     int addPlayer(int life = 3, int bullet = 1);

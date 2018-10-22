@@ -37,6 +37,7 @@ void Player::resetPlayer(int life, int bullet)
   getresult = false;
 }
 
+//verifie que l'action est possible et met l'action pour le joueur
 bool Player::setAction(int action)
 {
 	if (action == 1) {
@@ -48,6 +49,14 @@ bool Player::setAction(int action)
 			return false;
 		}
 	}
+ if(action == 3){
+  if(bullet >=6){
+    return false;
+  } else {
+    this->action = action;
+    return true;
+  }
+ }
 	this->action = action;
 	return true;
 }
@@ -57,11 +66,13 @@ int Player::getAction()
 	return action;
 }
 
+//perd une balle
 void Player::shoot()
 {
 	bullet--;
 }
 
+// perd une vie
 void Player::getHit()
 {
 	life--;
@@ -77,6 +88,7 @@ void Player::setResult(int result)
 	this->result = result;
 }
 
+//rajoute une balle
 void Player::reload()
 {
 	bullet++;

@@ -7,12 +7,14 @@
 IPAddress apIP(10, 10, 10, 10);
 const char* ssid = "ESP_luc_AP";
 const char* pass = "123456789";
+
+// variables d'initialisation des parties
 int nb_life = 1;
 int nb_bullet = 1;
 
 ESP8266WebServer server(80);
+// tableau stockant les parties
 Game * game[4];
-const int led = 13;
 bool calculation[4] = { false, false, false, false };
 
 void handleRoot() {
@@ -39,8 +41,6 @@ void handleNotFound() {
 }
 
 void setup(void) {
-  pinMode(led, OUTPUT);
-  digitalWrite(led, 0);
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   Serial.print("Setting soft-AP ... ");
@@ -66,14 +66,15 @@ void setup(void) {
 
   server.on("/", handleRoot);
 
+//requete pour rejoindre une partie
   server.on("/joinGame", [](){
     server.sendHeader("Access-Control-Allow-Origin", "*");
-    Serial.println("someone try to join a game");
+    //on récupère les anciennes valeur de l'utilisateur s'il a deja jouer
     int oldId = server.arg(0).toInt();
     int oldGame = server.arg(1).toInt();
-    if(oldGame != -1){
+    if(oldGame != -1){ // si l'utilisateur recommence une partie
 	  int idGame = oldGame;
-      if(oldId != -1){
+      if(oldId != -1){ //on remet les variable du client aux valeurs initiales et on lui renvoie
         int idPlayer = oldId;
         game[idGame]->getPlayer(idPlayer)->resetPlayer(nb_life, nb_bullet);
         String res = String(nb_life) + '-' + String(nb_bullet) + '-' + String(idPlayer) + '-' + String(idGame);
@@ -83,9 +84,9 @@ void setup(void) {
       }  
 	}
 	else {
-		int idGame = findGame();
+		int idGame = findGame(); //sinon on  chercher un partie
 		if (idGame != -1) {
-			int idPlayer = game[idGame]->addPlayer(nb_life, nb_bullet);
+			int idPlayer = game[idGame]->addPlayer(nb_life, nb_bullet); //on attribut un id au client et on lui envoie ces valeurs initiales
 			String res = String(nb_life) + '-' + String(nb_bullet) + '-' + String(idPlayer) + '-' + String(idGame);
 			Serial.print("new game : ");
 			Serial.println(res);
@@ -102,8 +103,8 @@ void setup(void) {
   server.on("/gameStarted", [](){
     server.sendHeader("Access-Control-Allow-Origin", "*");
     int idGame = server.arg(0).toInt();
-    if(game[idGame]->isFull()){
-      if(game[idGame]->isReady()){
+    if(game[idGame]->isFull()){ // si la partie est pleine
+      if(game[idGame]->isReady()){ // et que les des joueurs sont prêt, on autorise les clients à commencer la partie
         server.send(200, "text/plain", "1");
       }else{
         server.send(400, "text/plain", "0");
@@ -126,7 +127,7 @@ void setup(void) {
     Serial.print(action);
     Serial.print(" nombre de balle:");
     Serial.println(game[idGame]->getPlayer(idPlayer)->getBullet());
-    bool res = game[idGame]->getPlayer(idPlayer)->setAction(action);
+    bool res = game[idGame]->getPlayer(idPlayer)->setAction(action); // on verifie que l'action est possible
     if(res == false){
       Serial.println("action non autorisée");
       server.send(400, "text/plain", "0");
@@ -138,7 +139,7 @@ void setup(void) {
       Serial.println(game[idGame]->getPlayer(idPlayer)->getAction());
       server.send(200, "text/plain", String(action));
     }
-    if(game[idGame]->turnReady()){
+    if(game[idGame]->turnReady()){ // si les deux joueuurs ont joué, on autorise le calcul du résultat
       calculation[idGame] = true;
     }
   });
@@ -153,7 +154,7 @@ void setup(void) {
 	  Serial.print(idGame);
     Serial.print(" demande le resultat avec getresult=");
     Serial.println(game[idGame]->getPlayer(idPlayer)->getresult);
-    if(game[idGame]->getPlayer(idPlayer)->getresult == true){
+    if(game[idGame]->getPlayer(idPlayer)->getresult == true){ // si le calcul a été effectué pour le client, on lui renvoie les résultat et l'action de l'autre client (nb_life-nb_bullet-result-otheraction)
       int life = game[idGame]->getPlayer(idPlayer)->getLife();
       int result = game[idGame]->getPlayer(idPlayer)->getResult();
       int bullet = game[idGame]->getPlayer(idPlayer)->getBullet();
@@ -176,8 +177,8 @@ void setup(void) {
     Serial.print("player");
     Serial.print(idPlayer + 1);
     Serial.println(" quitte la partie");
-    game[idGame]->deletePlayer(idPlayer);
-	  if (game[idGame]->isEmpty() == true) {
+    game[idGame]->deletePlayer(idPlayer); // si le joueur quitte la partie, on le supprime
+	  if (game[idGame]->isEmpty() == true) { // si la partie est vide, on supprime la partie
   		delete game[idGame];
   		game[idGame] = nullptr;
   		Serial.print("game : ");
@@ -195,7 +196,7 @@ void setup(void) {
 void loop(void) {
   server.handleClient();
   for (int i = 0; i < 4; i++) {
-	  if (calculation[i]) {
+	  if (calculation[i]) { // quand le calcul est possible, on calcul le resultat de la partie et on autorise les utilisateurs à les lire
 		  game[i]->calculate();
 		  game[i]->getPlayer(0)->getresult = true;
 		  game[i]->getPlayer(1)->getresult = true;
@@ -208,7 +209,7 @@ void loop(void) {
 
 }
 
-int findGame() {
+int findGame() { //recherche une game non pleine ou en créé une 
 	for (int i = 0; i < 4; i++) {
 		if (game[i] != nullptr) {
 			if (game[i]->isFull() == false) {

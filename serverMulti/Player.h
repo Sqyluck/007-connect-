@@ -2,11 +2,11 @@
 
 class Player {
   private: 
-    int life;
+    int life; 
     int bullet;
-	  int action;
-	  int result;
-    int otherAction;
+	  int action; // 0: aucune; 1: tirer; 2:bloquer; 3:recharger
+	  int result; // 0 :perdu; 1:continuer; 2:ganger
+    int otherAction; // action de l'autre joueur
   public:
     Player(int life = 3, int bullet = 1);
     int getLife();

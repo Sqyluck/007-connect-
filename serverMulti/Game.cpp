@@ -6,6 +6,7 @@ Game::Game(){
 	player[1] = nullptr;
 }
 
+// fonction d'ajout d'un joueur à la partie, return l'id du joueur
 int Game::addPlayer(int life, int bullet) {
 	if (player[0] == nullptr) {
 		player[0] = new Player(life, bullet);
@@ -20,17 +21,19 @@ int Game::addPlayer(int life, int bullet) {
 	}
 }
 
+//supprime le joueur
 void Game::deletePlayer(int idPlayer){
   delete player[idPlayer];
   player[idPlayer] = nullptr;
 }
 
-
+/: retourne l'addresse du joueur
 Player * Game::getPlayer(int id)
 {	
   return player[id];
 }
 
+//verifie que la partie est pleine
 bool Game::isFull()
 {
 	if ((player[0] != nullptr) && (player[1] != nullptr)) {
@@ -41,6 +44,7 @@ bool Game::isFull()
 	}
 }
 
+//verifie que la partie est vide
 bool Game::isEmpty()
 {
 	if ((player[0] == nullptr) && (player[1] == nullptr)) {
@@ -51,6 +55,7 @@ bool Game::isEmpty()
 	}
 }
 
+//verifie que les deux joueurs sont prêt à commencer une nouvelles partie
 bool Game::isReady()
 {
   if ((player[0]->getResult() == 1) && (player[1]->getResult() == 1)) {
@@ -61,6 +66,7 @@ bool Game::isReady()
   }
 }
 
+//verifie que les deux joueurs on joué
 bool Game::turnReady()
 {
 	if ((player[0]->getAction() != 0) && (player[1]->getAction() != 0)) {
@@ -71,6 +77,7 @@ bool Game::turnReady()
 	}
 }
 
+// calcul le résultat en fonction des actions des joueurs
 void Game::calculate()
 {
 	for (int i = 0; i < 2; i++) {
