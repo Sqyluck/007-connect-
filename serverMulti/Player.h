@@ -2,14 +2,13 @@
 
 class Player {
   private: 
-    int id;
     int life;
     int bullet;
 	  int action;
 	  int result;
     int otherAction;
   public:
-    Player(int id, int life = 3, int bullet = 1);
+    Player(int life = 3, int bullet = 1);
     int getLife();
     int getBullet();
     void resetPlayer(int life, int bullet);

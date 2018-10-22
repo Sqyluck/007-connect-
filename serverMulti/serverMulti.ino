@@ -101,11 +101,15 @@ void setup(void) {
 
   server.on("/gameStarted", [](){
     server.sendHeader("Access-Control-Allow-Origin", "*");
-  	int idGame = server.arg(0).toInt();
+    int idGame = server.arg(0).toInt();
     if(game[idGame]->isFull()){
-      server.send(200, "text/plain", "1");
-    }else{
-      server.send(400, "text/plain", "0");
+      if(game[idGame]->isReady()){
+        server.send(200, "text/plain", "1");
+      }else{
+        server.send(400, "text/plain", "0");
+      }
+    } else {
+        server.send(400, "text/plain", "0");
     }
   });
 
