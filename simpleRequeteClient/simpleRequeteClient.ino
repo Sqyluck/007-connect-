@@ -11,6 +11,7 @@ int result;
 int gameStarted = 0;
 int idUser=-1;
 int timout = millis();
+int otherResult = 0;
 
 bool joinGame(){
   HTTPClient http;
@@ -84,6 +85,7 @@ bool started(){
               NbLife = payload.substring(0,2).toInt();Serial.println(NbLife);
               NbBullet = payload.substring(2,3).toInt();Serial.println(NbBullet);
               result = payload.substring(4,5).toInt();Serial.println(result);
+              otherResult = payload.substring(5,6).toInt();Serial.println(otherResult);
               reponse = true;
               }
             http.end();
