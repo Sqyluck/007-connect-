@@ -8,11 +8,11 @@ Game::Game(){
 
 int Game::addPlayer(int life, int bullet) {
 	if (player[0] == nullptr) {
-		player[0] = new Player(0, life, bullet);
+		player[0] = new Player(life, bullet);
 		return 0;
 	}
 	else if (player[1] == nullptr) {
-		player[1] = new Player(1, life, bullet);
+		player[1] = new Player(life, bullet);
 		return 1;
 	}
 	else {
@@ -27,7 +27,8 @@ void Game::deletePlayer(int idPlayer){
 
 
 Player * Game::getPlayer(int id)
-{	return player[id];
+{	
+  return player[id];
 }
 
 bool Game::isFull()
@@ -48,6 +49,16 @@ bool Game::isEmpty()
 	else {
 		return false;
 	}
+}
+
+bool Game::isReady()
+{
+  if ((player[0]->getResult() == 1) && (player[1]->getResult() == 1)) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 bool Game::turnReady()

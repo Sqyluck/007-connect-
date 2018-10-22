@@ -10,6 +10,7 @@ class Game {
 	bool isFull();
 	bool isEmpty();
 	bool turnReady();
+  bool isReady();
 	void calculate();
   void deletePlayer(int idPlayer);
 };

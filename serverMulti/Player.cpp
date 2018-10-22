@@ -1,7 +1,6 @@
 #include "Player.h"
 
-Player::Player(int id, int life, int bullet) {
-  this->id = id;
+Player::Player(int life, int bullet) {
   this->life = life;
   this->bullet = bullet;
   action = 0;
