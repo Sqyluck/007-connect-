@@ -1,28 +1,31 @@
-<!-- Day Page -->
-
 <section class="app-panel" ng-init="setHeader('Application')">
-  <div ng-controller = "game">
-    <h5>Player{{idPlayer + 1}}</h5>
-    <p>{{life}} vie | {{bullet}} balle(s)</p>
-    <div ng-show="myAction == 0">
-      <p ng-click="action(1)">tirer</p>
-      <p ng-click="action(2)">bloquer</p>
-      <p ng-click="action(3)">recharger</p>
+  <div ng-controller="game">
+    <div class="info">
+        <h1 class="titre"> Player{{idPlayer + 1}}</h1>
+        <p>{{life}}<img src="image/heart.png" class="icon"/>
+          {{bullet}}<img src="image/bullet.png" class="icon"/>
+        </p>
     </div>
-    <div ng-show="myAction != 0">
-      <p>vous jouer :</p>
-      <h5 ng-show="myAction == 1">tirer</h5>
-      <h5 ng-show="myAction == 2">bloquer</h5>
-      <h5 ng-show="myAction == 3">recharger</h5>
-      <p>__________________________________</p>
+  <div>
+  <div ng-show="myAction == 0">
+      <p class="titre" >Choisissez une action:</p>
+      <p ng-click="action(1)" class="palign"><img src="image/pistol.png" class="icon2"/> Tirer</p>
+      <p ng-click="action(2)" class="palign"><img src="image/shield.png" class="icon2"/> Bloquer</p>
+      <p ng-click="action(3)" class="palign"><img src="image/load.png" class="icon2"/> Recharger</p>
+  </div>
+    <div class="aligne">
+    <div  class = "blocL">
+      <p ng-show="myAction == 1"><img src="image/luc.png" class="icon1"/>Tir</p>
+      <p ng-show="myAction == 2"><img src="image/luc.png" class="icon1"/>Bloquage</p>
+      <p ng-show="myAction == 3"><img src="image/luc.png" class="icon1"/>Recharge</p>
     </div>
-    <div ng-show="otherResult != 0">
-      <p>l'autre a joué :</p>
-      <h5 ng-show="otherResult == 1">tirer</h5>
-      <h5 ng-show="otherResult == 2">bloquer</h5>
-      <h5 ng-show="otherResult == 3">recharger</h5>
+    <div class="blocR">
+      <p ng-show="otherResult == 1">Tir <img src="image/dark-vador.png" class="icon1"/></p>
+      <p ng-show="otherResult == 2">Bloquage <img src="image/dark-vador.png" class="icon1"/></p>
+      <p ng-show="otherResult == 3">Recharge <img src="image/dark-vador.png" class="icon1"/></p>
     </div>
-    <p ng-click="continuer()" ng-show="continue">continuer</p>
-
+  </div>
+    <p ng-click="continuer()" ng-show="continue" class="button">Tour suivant</p>
+  </div>
   </div>
 </section>

@@ -1,8 +1,9 @@
 <!-- Day Page -->
-
 <section class="app-panel" ng-init="setHeader('Application')">
+  <img src="image/gun.jpg" class="image"/>
+  <p ng-hide="waitingGame" class="titre"> Tenez-vous prêt</p>
   <div ng-controller = "main">
-    <p ng-click="joinGame()" ng-hide="accessGame"> Rejoindre une partie</p>
-    <p ng-show="waitingGame">attente d'autre joueur...</p>
+    <p class = "button" ng-click="joinGame()" ng-hide="accessGame"> Nouvelle partie</p>
+    <p ng-show="waitingGame" class="buttonload"> Loading <i class="fa fa-spinner fa-spin"></i></p>
   </div>
 </section>

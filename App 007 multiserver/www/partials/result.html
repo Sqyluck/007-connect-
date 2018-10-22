@@ -2,9 +2,12 @@
 
 <section class="app-panel" ng-init="setHeader('Application')">
   <div ng-controller = "result">
-    <p>fin de la partie</p>
-    <p>{{result===0?"Vous avez perdu":"Vous avez gagné"}}</p>
-    <p ng-click="replay()">Rejouer</p>
-    <p ng-click="quit()">Quitter</p>
+    <h1 class="titre">Fin de partie</h1>
+    <p class="titre">{{result===0?"Vous avez perdu.":"Vous avez gagné !!"}}</p>
+    <div class="aligne">
+    <p ng-click="replay()" class="button">Rejouer</p>
+    <p ng-click="quit()" class="button">Quitter</p>
+  </div>
+  <img src="image/james.png" class="image1"/>
   </div>
 </section>
